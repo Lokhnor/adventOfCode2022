@@ -1,17 +1,9 @@
-import fs from "fs";
-
-function readInput(): Promise<string> {
-  return new Promise((resolve, reject) => {
-    fs.readFile("day1.txt", "utf-8", (err, data) => {
-      if (err) return reject(err);
-      resolve(data);
-    });
-  });
-}
+import os from "os";
+import { readInput } from "../utils/readFile";
 
 async function totalCalories() {
-  const data = await readInput();
-  const array = data.split("\r\n"); // new line & whitespace
+  const data = await readInput("day1.txt");
+  const array = data.split(os.EOL);
 
   // should return this from func, instead of declaring here
   let calPerElf: number[] = [0]; // initialised as a 0 so I can add to it
