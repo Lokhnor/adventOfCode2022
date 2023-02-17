@@ -12,20 +12,17 @@
 import os from "os";
 import { readInput } from "../utils/readFile";
 
-function bonus(move: string) {
-  let points: number = 0;
+type Move = "rock" | "paper" | "scissors";
+
+function bonus(move: Move) {
   switch (move) {
     case "rock":
-      points = 1;
-      break;
+      return 1;
     case "paper":
-      points = 2;
-      break;
+      return 2;
     case "scissors":
-      points = 3;
-      break;
+      return 3;
   }
-  return points;
 }
 
 async function totalScore() {
@@ -59,7 +56,7 @@ async function totalScore() {
   const points1: number[] = decryptedPart1.map((round) => {
     const [player1, player2] = round.split(" ");
 
-    return matchUps[`${player1} ${player2}`] + bonus(player2);
+    return matchUps[`${player1} ${player2}`] + bonus(player2 as Move);
   });
 
   const decryptedFirstColumn = data.map((line) => {
